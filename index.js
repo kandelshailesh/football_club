@@ -11,9 +11,14 @@ const bodyParser= require('body-parser');
 const passport = require("passport");
 const { ReE, to, TE } = require('./services/util');
 
-app.use(bodyParser.json());
 app.use(cors());
-app.use(bodyParser.urlencoded({limit: "50mb", extended: false, parameterLimit: 50000 }));
+app.use( bodyParser.json({limit: '50mb'}) );
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit:50000
+}));
+// app.use(bodyParser.urlencoded({limit: "50mb", extended: false, parameterLimit: 50000 }));
 app.use(logger('dev'));
 app.use("/uploads", express.static("uploads"));
 const { status_codes_msg } = require('./utils/appStatics');
